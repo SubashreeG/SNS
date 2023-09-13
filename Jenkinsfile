@@ -13,6 +13,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
+        checkout scm
         //git branch: 'main', url: 'https://github.com/SubashreeG/SNS.git'
       }
     }
