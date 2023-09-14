@@ -45,7 +45,7 @@ pipeline {
             sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t ${DOCKER_IMAGE} .'
             sh 'docker run --entrypoint "" -v /var/run/docker.sock:/var/run/docker.sock ${DOCKER_IMAGE} your-custom-command'
             def dockerImage = docker.image("${DOCKER_IMAGE}")
-            docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
+            docker.withRegistry(' https://hub.docker.com/', "docker-cred") {
                 dockerImage.push()
             }
         }
@@ -53,8 +53,8 @@ pipeline {
     }
     stage('Update Deployment File') {
         environment {
-            GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
-            GIT_USER_NAME = "iam-veeramalla"
+            GIT_REPO_NAME = "SNS"
+            GIT_USER_NAME = "SubashreeG"
         }
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
