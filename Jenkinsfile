@@ -5,10 +5,6 @@ pipeline {
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
   }
-  tools {
-        // Specify the Git tool installation name configured in Jenkins
-        git 'Git'
-  }
   stages {
     stage('Checkout') {
       steps {
@@ -62,8 +58,8 @@ pipeline {
                     git config user.email "subag.shree@gmail.com"
                     git config user.name "SubashreeG"
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" SubashreeG/SNS/deployment.yml
-                    git add SubashreeG/SNS/deployment.yml
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" SubashreeG/SNS /deployment.yml
+                    git add SubashreeG/SNS /deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                 '''
