@@ -5,10 +5,6 @@ pipeline {
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
   }
-  tools {
-        // Specify the Git tool installation name configured in Jenkins
-        git 'Git'
-  }
   stages {
     stage('Checkout') {
       steps {
